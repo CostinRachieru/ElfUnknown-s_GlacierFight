@@ -1,0 +1,44 @@
+Rachieru Costin - Tudor
+314CA
+				Homework 3 - ElfUnknown's GlacierFight
+
+	The hierarchy of the project is the following::
+	- main.c: contains all the functions and the main in which these are called.
+	- Makefile: contains the build and clean rules.     
+
+	Functions called in main.c:
+	The game starts and the program allocates memory for map and players data.
+	Functions read_map does the reading of the map and start_game.
+	Now function read_players reads all the data about players. This function 
+returns the number of deaths in it s phase. Some players are dumb enough that
+they are missing the glacier.
+	From now on till the end of the input file the program reads the commands 
+given and execute them by the functions: move, snowstorm, meltdown, 
+print_scoreboard. The functions return the number of deaths.
+	After every command the program searches for the winner (aka the last
+man standing). 
+
+	Problems of implementation / difficulties
+
+	All the functions that encode and decode data are using bits shifting. 
+This helps for eficiently storing the data.
+	All data needed for every player, except it s names, is stored in a long
+number (8 bytes) by the following pattern: 
+	-[1,2]: the HP;
+	-[3,4]: the STAMINA;
+	-[5,6]: the DMG;
+	-[7]: the line on which is the player;
+	-[8]: the column on which is the player;
+	These long numbers are stored in a matrix because of the fact that in
+further development (which takes time) the memory alocated for every player
+will be freed after he comes back to Santa Claus.
+
+	All data needed for map environment is found in a matrix of int (4 bytes)
+numbers by the following pattern:
+	-[1,2]: Height of the terrain;
+	-[3,4]: Dimensions of the gloves found in that cell; 
+
+	The print_scoreboard function makes a copy of the names of the players to 
+sort this copy for printing. 
+	The names of the functions are given so the code is as readable and 
+understandable as possible.
